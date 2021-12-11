@@ -1,0 +1,33 @@
+@use '../../scss/' as *;
+
+.usersection {
+  margin: 9rem auto;
+  @include flex(flex-start, center);
+  min-height: 61vh;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.order__button {
+  font-size: 1rem;
+
+  outline: none;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.order__button:hover {
+  color: $main-color;
+}
+
+.order_container {
+  display: block;
+  text-align: center;
+}
+
+.event__form {
+  margin-top: 3rem;
+}

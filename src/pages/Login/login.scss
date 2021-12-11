@@ -1,0 +1,7 @@
+@use '../../scss/' as *;
+
+.loginsection {
+  margin: 9rem auto;
+  @include flex(flex-start, center);
+  height: 61vh;
+}

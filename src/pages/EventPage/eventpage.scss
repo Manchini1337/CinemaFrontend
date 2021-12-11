@@ -1,0 +1,30 @@
+@use '../../scss/' as *;
+
+.event__section {
+  margin: 9rem auto;
+  width: 90%;
+  min-height: 61vh;
+}
+.event__info {
+  margin-bottom: 2rem;
+}
+
+.event__info h2,
+h3,
+h4 {
+  text-align: center;
+}
+
+.event__container {
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+
+.event__screen {
+  background-color: #fff;
+  height: 10rem;
+  width: 20rem;
+  margin: 15px auto;
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
+}

@@ -1,0 +1,109 @@
+@use '../../scss/' as *;
+
+input,
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+form {
+  display: block;
+  position: relative;
+}
+
+form:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: 1;
+  background-color: #5b6570;
+}
+
+form .form-inner {
+  color: $white;
+  position: relative;
+  display: block;
+  margin: auto 0;
+
+  padding: 2rem;
+  z-index: 2;
+}
+
+form .form-inner h2 {
+  color: $white;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+form .form-inner .form-group {
+  display: block;
+  width: 300px;
+  margin: 1rem auto;
+}
+
+form .form-inner .form-group label {
+  display: block;
+  color: $white;
+  font-size: 12px;
+  margin-bottom: 5px;
+  transition: 0.4s;
+}
+
+form .form-inner .form-group:focus-within label {
+  color: #fe4880;
+}
+
+form .form-inner .form-group input {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  transition: 0.4s;
+}
+
+form .form-inner .form-group input:focus {
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
+}
+
+form .form-inner input[type='submit'] {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    to right,
+    #ffce00 50%,
+    #ffce00 50%,
+    #fe4880
+  );
+  background-position: 0%;
+  background-size: 200%;
+  transition: 0.4s;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+form .form-inner input[type='submit']:hover {
+  background-position: 100% 0%;
+}
+
+form .button {
+  margin: 5px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.error {
+  text-align: center;
+  color: #fe4880;
+  font-weight: 600;
+}
