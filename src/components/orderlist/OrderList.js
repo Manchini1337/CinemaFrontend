@@ -1,60 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { format } from 'date-fns';
 
 import './orderlist.scss';
 
-const dummy_order = [
-  {
-    createdAt: '10 sierpnia',
-    email: '@kowal@wp.pl',
-    firstName: 'dla',
-    id: 5,
-    isCancelled: false,
-    isPaid: false,
-    phoneNumber: '123123123',
-    lastName: 'kumpla',
-    seatId: 'A3, A4, A5',
-    event: {
-      movieId: 'Venom: Bardzo długa nazwa filmu',
-      seats: 'all seats i guess',
-      startDate: 'kiedys',
-      endDate: 'pozniej',
-    },
-    user: {
-      email: 'mnowak1992@gmail.com',
-      firstName: 'haslo i login takie same',
-      lastName: 'haslo i login takie same',
-      phoneNumber: '728345123',
-      username: 'Kamilzdun!123',
-    },
-  },
-  {
-    createdAt: '10 sierpnia',
-    email: '@kowal@wp.pl',
-    firstName: 'dla',
-    id: 5,
-    isCancelled: false,
-    isPaid: false,
-    phoneNumber: '123123123',
-    lastName: 'kumpla',
-    seatId: 'A3, A4, A5',
-    event: {
-      movieId: 'Venom: Bardzo długa nazwa filmu',
-      seats: 'all seats i guess',
-      startDate: 'kiedys',
-      endDate: 'pozniej',
-    },
-    user: {
-      email: 'mnowak1992@gmail.com',
-      firstName: 'haslo i login takie same',
-      lastName: 'haslo i login takie same',
-      phoneNumber: '728345123',
-      username: 'Kamilzdun!123',
-    },
-  },
-];
-
 const OrderList = ({ orders }) => {
-  console.log(orders);
+  {
+    console.log(orders);
+  }
   return (
     <>
       <table className='content-table'>
@@ -70,10 +22,21 @@ const OrderList = ({ orders }) => {
         <tbody>
           {orders.map((order, i) => (
             <tr key={i}>
-              <td>{order.email}</td>
-              <td>{order.createdAt}</td>
+              <td>
+                <p>{order.firstName + ' ' + order.lastName}</p>
+                <p>{order.email}</p>
+              </td>
+
+              <td>
+                <p>{format(new Date(order.createdAt), 'yyyy-MM-dd')}</p>
+                <p>{format(new Date(order.createdAt), 'HH:mm')}</p>
+              </td>
               <td>{order.event.movie.name}</td>
-              <td>{order.seatId}</td>
+              <td>
+                {JSON.parse(order.seatId).map((seat) => (
+                  <p key={seat.id}>Miejsce {seat.name}</p>
+                ))}
+              </td>
               <td>{order.isPaid ? 'Tak' : 'Nie'}</td>
             </tr>
           ))}

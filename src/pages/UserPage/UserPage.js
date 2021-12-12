@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './userpage.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import api from '../../utils/api/axios.interceptor';
 import CollapsibleTable from '../../components/CollapsibleTable/CollapsibleTable';
 import MovieForm from '../../components/movie-form/MovieForm';
 import EventForm from '../../components/event-form/EventForm';
 import OrderList from '../../components/orderlist/OrderList';
-import { userActions } from '../../store/userslice';
+
 import UserForm from '../../components/user-update-form/UserForm';
 
 const UserPage = () => {
-  const dispatch = useDispatch();
   let navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [userOrders, setUserOrders] = useState([]);
@@ -19,7 +18,6 @@ const UserPage = () => {
   const [genres, setGenres] = useState([]);
   const [movieMessage, setMovieMessage] = useState('');
   const [eventMessage, setEventMessage] = useState('');
-  const [userMessage, setUserMessage] = useState('');
 
   useEffect(() => {
     api
@@ -78,10 +76,9 @@ const UserPage = () => {
   const addEvent = async (movieId, startDate, endDate) => {
     try {
       const response = await api.post('/events', {
-        movieId: movieId,
+        movieId: Number(movieId),
         startDate: startDate,
         endDate: endDate,
-        seats: 'tu do ustalenia jeden na stałe',
       });
       if (response.status === 200) {
         setEventMessage('Poprawie dodano seans');
@@ -126,7 +123,7 @@ const UserPage = () => {
             </div>
             <div className='event__form'>
               <h2>Zmień dane</h2>
-              <UserForm user={user} message={userMessage} />
+              <UserForm user={user} />
             </div>
           </>
         )}

@@ -1,0 +1,63 @@
+@use '../../scss/' as *;
+
+.order__section {
+  position: absolute;
+  margin: 9rem auto;
+  width: 60%;
+  min-height: 61vh;
+  background-color: rgba(#5b6570, 0.7);
+  z-index: 10;
+  top: 1rem;
+  left: 24rem;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  padding: 1rem;
+}
+
+.order__section h1 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+.order__movie--summary {
+  text-align: center;
+}
+
+.banner {
+  height: 80vh;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include overlay();
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to top, $body-bg, rgba($black, 0));
+  }
+}
+
+.order__tickets--summary {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.order__price--summary {
+  margin-top: 2rem;
+  text-align: center;
+}

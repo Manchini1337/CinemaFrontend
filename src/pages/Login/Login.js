@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import LoginForm from '../../components/login/LoginForm';
 import './login.scss';
 import api from '../../utils/api/axios.interceptor';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userActions } from '../../store/userslice';
 import { useNavigate } from 'react-router-dom';
 

@@ -6,25 +6,10 @@ import api from '../../utils/api/axios.interceptor';
 const SchedulePage = () => {
   const [events, setEvents] = useState([]);
   const [genres, setGenres] = useState([]);
-  // useEffect(() => {
-  //   api
-  //     .get('/events')
-  //     .then((response) => {
-  //       const newEvents = response.data;
-  //       for (let i = 0; i < newEvents.length; i++) {
-  //         for (let j = 0; j < newEvents.length; j++) {
-
-  //         }
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   useEffect(() => {
     api
-      .get('/events')
+      .get('/moviesevents')
       .then((response) => {
         setEvents(response.data);
       })

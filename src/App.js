@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import api from './utils/api/axios.interceptor';
 import { useDispatch } from 'react-redux';
 import { userActions } from './store/userslice';
+import OrderPage from './pages/OrderPage/OrderPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
         <Route path='/user' element={<UserPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
         <Route path='/schedule' element={<SchedulePage />}></Route>
+        <Route path='/order' element={<OrderPage />}></Route>
         <Route path='/movie/:id' element={<MoviePage />}></Route>
         <Route path='/event/:id' element={<EventPage />}></Route>
       </Routes>

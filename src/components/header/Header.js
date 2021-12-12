@@ -2,10 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSignOutAlt,
-  faShoppingCart,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import api from '../../utils/api/axios.interceptor';
 import { userActions } from '../../store/userslice';
 
@@ -22,7 +19,6 @@ const Header = () => {
     login = user.username;
     userPath = '/user';
   }
-  console.log(login);
 
   const headerNav = [
     { display: 'Strona główna', path: '/' },
@@ -50,27 +46,6 @@ const Header = () => {
       window.removeEventListener('scroll', shrinkHeader);
     };
   }, []);
-
-  // const logout = async () => {
-  //   dispatch(
-  //     userActions.setUserData({
-  //       firstName: '',
-  //       lastName: '',
-  //       phoneNumber: '',
-  //       email: '',
-  //       username: '',
-  //     })
-  //   );
-  //   console.log(user);
-  //   try {
-  //     const response = await api.post('/users/logout');
-  //     if (response) {
-  //       return <Navigate to='/' />;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const logout = async () => {
     try {
@@ -105,9 +80,7 @@ const Header = () => {
               <Link to={e.path}>{e.display}</Link>
             </li>
           ))}
-          <li>
-            <FontAwesomeIcon icon={faShoppingCart} className='header__icon' />
-          </li>
+
           {user.username && (
             <li>
               <FontAwesomeIcon

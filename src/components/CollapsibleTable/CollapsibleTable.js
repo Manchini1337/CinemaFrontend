@@ -12,9 +12,9 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import api from '../../utils/api/axios.interceptor';
+import { format } from 'date-fns';
 
-function Row(props) {
-  const { row } = props;
+function Row({ row }) {
   const [open, setOpen] = React.useState(false);
 
   async function cancelOrder(id) {
@@ -23,10 +23,12 @@ function Row(props) {
         id,
         isCancelled: true,
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
+  }
+  {
+    console.log(row);
   }
 
   return (
@@ -42,10 +44,14 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component='th' scope='row'>
-          {row.firstName + ' ' + row.lastName}
+          <p>{row.firstName + ' ' + row.lastName}</p>
+          <p>{row.email}</p>
         </TableCell>
-        <TableCell align='center'>{row.event.movieId}</TableCell>
-        <TableCell align='center'>{row.event.startDate}</TableCell>
+        <TableCell align='center'>{row.event.movie.name}</TableCell>
+        <TableCell align='center'>
+          <p>{format(new Date(row.event.startDate), 'yyyy-MM-dd')}</p>
+          <p>{format(new Date(row.event.startDate), 'HH:mm')}</p>
+        </TableCell>
         <TableCell align='center'>{row.isPaid ? 'Tak' : 'Nie'}</TableCell>
         <TableCell align='center'>{row.isCancelled ? 'Tak' : 'Nie'}</TableCell>
       </TableRow>
@@ -73,7 +79,6 @@ function Row(props) {
 }
 
 export default function CollapsibleTable(props) {
-  console.log(props.orders);
   return (
     <TableContainer component={Paper}>
       <Table aria-label='collapsible table'>
@@ -81,8 +86,8 @@ export default function CollapsibleTable(props) {
           <TableRow>
             <TableCell />
             <TableCell>Klient</TableCell>
-            <TableCell align='center'>event.movieId</TableCell>
-            <TableCell align='center'>Event.startDate</TableCell>
+            <TableCell align='center'>Film</TableCell>
+            <TableCell align='center'>Data</TableCell>
             <TableCell align='center'>Czy opłacono?</TableCell>
             <TableCell align='center'>Czy anulowano?</TableCell>
           </TableRow>

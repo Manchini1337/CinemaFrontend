@@ -4,7 +4,7 @@ import { OutlineButton } from '../button/Button';
 import BasicDateTimePicker from '../datepicker/BasicDateTimePicker';
 
 const EventForm = ({ message, addEvent, movies }) => {
-  const [movieId, setMovieId] = useState('');
+  const [movieId, setMovieId] = useState(10);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 

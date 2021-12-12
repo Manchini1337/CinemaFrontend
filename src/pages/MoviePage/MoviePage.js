@@ -29,8 +29,6 @@ const MoviePage = () => {
     setGenre(movie.genre);
   }, [movie]);
 
-  console.log(genre);
-
   return (
     <>
       {movie && (
@@ -73,7 +71,6 @@ const MoviePage = () => {
 const Video = (props) => {
   const movie = props.movie;
   const urlCode = props.urlCode;
-  console.log(urlCode);
 
   const iframeRef = useRef(null);
 

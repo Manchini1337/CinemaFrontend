@@ -1,48 +1,67 @@
-import React, { useEffect, useState } from 'react';
-import './userform.scss';
+import React, { useState, useEffect } from 'react';
+import './orderform.scss';
 import { OutlineButton } from '../button/Button';
 import api from '../../utils/api/axios.interceptor';
 
-const UserForm = ({ user }) => {
+const OrderForm = ({ user, order }) => {
   const [details, setDetails] = useState({
     firstName: '',
     lastName: '',
     phoneNumber: '',
     email: '',
-    password: '',
+    userId: null,
+    eventId: null,
+    seatId: null,
   });
 
-  const [userMessage, setUserMessage] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (user.username) {
+      setDetails({
+        ...details,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+        email: user.email,
+        userId: user.id,
+      });
+    }
+  }, [details.eventId]);
 
   useEffect(() => {
     setDetails({
       ...details,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      phoneNumber: user.phoneNumber,
-      email: user.email,
+      eventId: order.eventId,
+      seatId: order.selectedSeats,
     });
   }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await api.put('/users', {
-        id: user.id,
+      const response = api.post('/orders', {
         firstName: details.firstName,
         lastName: details.lastName,
         phoneNumber: details.phoneNumber,
         email: details.email,
-        password: details.password,
+        userId: user.id ? user.id : null,
+        eventId: order.eventId,
+        seatId: order.selectedSeats,
       });
+      if (response) {
+        console.log('udalo sie, zrob redirect');
+      }
     } catch (err) {
-      setUserMessage('Coś poszło nie tak, spróbuj ponownie.');
+      setError('Wystąpił błąd, spróbuj ponownie');
       console.log(err);
     }
   };
   return (
     <form onSubmit={handleSubmit}>
       <div className='form-inner'>
-        {userMessage !== '' ? <div className='error'>{userMessage}</div> : ''}
+        {error !== '' ? <div className='error'>{error}</div> : ''}
         <div className='form-group'>
           <label htmlFor='firstname'>Imię:</label>
           <input
@@ -92,18 +111,6 @@ const UserForm = ({ user }) => {
           />
         </div>
 
-        <div className='form-group'>
-          <label htmlFor='password'>Hasło:</label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            onChange={(e) =>
-              setDetails({ ...details, password: e.target.value })
-            }
-            value={details.password}
-          />
-        </div>
         <div className='btncenter'>
           <OutlineButton type='submit' className='button'>
             Edytuj
@@ -114,4 +121,4 @@ const UserForm = ({ user }) => {
   );
 };
 
-export default UserForm;
+export default OrderForm;
