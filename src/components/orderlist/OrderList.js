@@ -4,9 +4,6 @@ import { format } from 'date-fns';
 import './orderlist.scss';
 
 const OrderList = ({ orders }) => {
-  {
-    console.log(orders);
-  }
   return (
     <>
       <table className='content-table'>

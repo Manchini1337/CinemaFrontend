@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './orderform.scss';
 import { OutlineButton } from '../button/Button';
 import api from '../../utils/api/axios.interceptor';
+import { useNavigate } from 'react-router-dom';
 
 const OrderForm = ({ user, order }) => {
+  let navigate = useNavigate();
   const [details, setDetails] = useState({
     firstName: '',
     lastName: '',
@@ -52,6 +54,7 @@ const OrderForm = ({ user, order }) => {
       });
       if (response) {
         console.log('udalo sie, zrob redirect');
+        navigate('/');
       }
     } catch (err) {
       setError('Wystąpił błąd, spróbuj ponownie');

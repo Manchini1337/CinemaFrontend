@@ -25,7 +25,6 @@ const LoginPage = () => {
       .get('/orders')
       .then((res) => {
         setUserOrders(res.data);
-        console.log(userOrders);
       })
       .catch((err) => {
         console.log(err);
