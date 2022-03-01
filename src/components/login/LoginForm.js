@@ -13,9 +13,13 @@ const LoginForm = ({ login, error }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(details);
+    setDetails({
+      username: '',
+      password: '',
+    });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='login-form'>
       <div className='form-inner'>
         <h2>Zaloguj się</h2>
         {error !== '' ? <div className='error'>{error}</div> : ''}

@@ -27,8 +27,16 @@ function Row({ row }) {
       console.log(error);
     }
   }
-  {
-    console.log(row);
+
+  async function acceptOrder(id) {
+    try {
+      const response = await api.put('/orders', {
+        id,
+        isPaid: true,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -60,7 +68,10 @@ function Row({ row }) {
           <Collapse in={open} timeout='auto' unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <div className='order_container'>
-                <button className='order__button'>
+                <button
+                  className='order__button'
+                  onClick={() => acceptOrder(row.id)}
+                >
                   Opłać zamówienie {row.id}
                 </button>
                 <button

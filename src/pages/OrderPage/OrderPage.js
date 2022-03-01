@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MoviePoster from '../../components/movie-poster/MoviePoster';
 import { format } from 'date-fns';
+import pl from 'date-fns/locale/pl';
+import Paypal from '../../components/PayPal/PayPal';
 
 const OrderPage = () => {
   const user = useSelector((state) => state.user);
@@ -58,7 +60,11 @@ const OrderPage = () => {
               <div className='order__movie--summary'>
                 <h2>{event?.movie.name}</h2>
                 <h3>{format(new Date(event.startDate), 'yyyy-MM-dd')}</h3>
-                <h4>{format(new Date(event.startDate), 'cccc HH:mm')}</h4>
+                <h4>
+                  {format(new Date(event.startDate), 'cccc HH:mm', {
+                    locale: pl,
+                  })}
+                </h4>
               </div>
               <div className='order__tickets--summary'>
                 <h2>Moje bilety:</h2>
@@ -73,7 +79,13 @@ const OrderPage = () => {
               </div>
             </Grid>
             <Grid item xs={4}>
-              <OrderForm order={order} user={user} />
+              <div className='paypal__container'>
+                <OrderForm order={order} user={user} />
+                <p className='paypal__text'>albo zapłać</p>
+                <div className='paypal'>
+                  <Paypal price={price} user={user} order={order} />
+                </div>
+              </div>
             </Grid>
           </Grid>
         </Box>

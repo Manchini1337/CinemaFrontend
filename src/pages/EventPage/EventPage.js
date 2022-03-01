@@ -9,11 +9,13 @@ import { useDispatch } from 'react-redux';
 import { orderActions } from '../../store/orderslice';
 import { OutlineButton } from '../../components/button/Button';
 import { format } from 'date-fns';
+import pl from 'date-fns/locale/pl';
 
 const EventPage = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [disclaimer, setDisclaimer] = useState('');
   const [show, setShow] = useState({
     startDate: new Date(),
 
@@ -41,6 +43,7 @@ const EventPage = () => {
   const handleSeatClick = (seat) => {
     if (seat.isAvailable) {
       setChosenSeats([...chosenSeats, seat]);
+      setDisclaimer('');
     } else {
       setChosenSeats(
         chosenSeats.filter((chosenSeat) => chosenSeat.id !== seat.id)
@@ -56,6 +59,10 @@ const EventPage = () => {
   };
 
   const handleConfirmClick = () => {
+    if (chosenSeats.length === 0) {
+      setDisclaimer('Nie wybrano żadnych miejsc');
+      return;
+    }
     dispatch(
       orderActions.setSelectedSeats({
         selectedSeats: chosenSeats,
@@ -75,10 +82,15 @@ const EventPage = () => {
           <Grid item xs={6}>
             <div className='event__info'>
               <h2>{show.movie.name}</h2>
-              <h3>{format(new Date(show.startDate), 'cccc dd.MM HH:mm')}</h3>
+              <h3>
+                {format(new Date(show.startDate), 'dd.MM HH:mm cccc ', {
+                  locale: pl,
+                })}
+              </h3>
             </div>
             <div className='event__container'>
               <div className='event__screen'></div>
+
               <div className='event__seats'>
                 {seats.map((seat, index) => (
                   <div
@@ -105,6 +117,7 @@ const EventPage = () => {
           <Grid item xs={3} style={{ position: 'relative' }}>
             <div className='event__order__summary'>
               <h3>Wybrane miejsca:</h3>
+
               {chosenSeats.map((chosenSeat) => (
                 <div key={chosenSeat.id}> {chosenSeat.name}</div>
               ))}
@@ -112,12 +125,13 @@ const EventPage = () => {
                 className='event__order--button'
                 onClick={handleConfirmClick}
               >
-                test
+                Zarezerwuj
               </OutlineButton>
             </div>
           </Grid>
         </Grid>
       </Box>
+      {disclaimer !== '' ? <div className='error'>{disclaimer}</div> : ''}
     </div>
   );
 };

@@ -16,6 +16,7 @@ import api from './utils/api/axios.interceptor';
 import { useDispatch } from 'react-redux';
 import { userActions } from './store/userslice';
 import OrderPage from './pages/OrderPage/OrderPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
   }, []);
   return (
     <>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />}></Route>

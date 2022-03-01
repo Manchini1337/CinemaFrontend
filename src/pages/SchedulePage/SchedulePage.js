@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './schedulepage.scss';
 import BasicGrid from '../../components/BasicGrid/BasicGrid';
 import api from '../../utils/api/axios.interceptor';
+import BasicDatePicker from '../../components/DatePick/BasicDatePicker';
 
 const SchedulePage = () => {
   const [events, setEvents] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [date, setDate] = useState(new Date());
+
+  console.log(events);
+  console.log(genres);
+  console.log(new Date(date + 1));
 
   useEffect(() => {
     api
@@ -31,7 +37,10 @@ const SchedulePage = () => {
 
   return (
     <div className='schedule__section'>
-      <BasicGrid events={events} genres={genres} />
+      <div className='date__container'>
+        <BasicDatePicker value={date} onChange={setDate} />
+      </div>
+      <BasicGrid events={events} genres={genres} date={date} />
     </div>
   );
 };

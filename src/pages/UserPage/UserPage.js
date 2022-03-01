@@ -91,8 +91,6 @@ const UserPage = () => {
   return (
     <div className='usersection'>
       <div className='section'>
-        <h2>na stronie</h2>
-
         {(user.type === 'ADMIN' || user.type === 'PERSONEL') && (
           <>
             <h2>Historia zamówień</h2>

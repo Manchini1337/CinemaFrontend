@@ -8,96 +8,104 @@ button {
   outline: none;
 }
 
-form {
+.event-form {
   display: block;
   position: relative;
-}
-
-form:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  z-index: 1;
-  background-color: #5b6570;
-}
-
-form .form-inner {
   color: $white;
-  position: relative;
-  display: block;
   margin: auto 0;
 
-  padding: 2rem;
   z-index: 2;
-}
 
-form .form-inner h2 {
-  color: $white;
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 30px;
-  text-align: center;
-}
+  & .button {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
 
-form .form-inner .form-group {
-  display: block;
-  width: 100%;
-  margin: 1rem auto;
-}
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: 1;
+    background-color: #5b6570;
+    border-radius: 3px;
+    box-shadow: 0 1rem 2rem rgba($black, 0.15);
+  }
 
-form .form-inner .form-group label {
-  display: block;
-  color: $white;
-  font-size: 1rem;
-  margin-bottom: 5px;
-  transition: 0.4s;
-}
+  & .form-inner {
+    padding: 1rem;
+    & .error {
+      text-align: center;
+      color: $white;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
 
-form .form-inner .form-group:focus-within label {
-  color: #fe4880;
-}
+    & .success {
+      text-align: center;
+      color: $main-color;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
 
-form .form-inner .form-group input {
-  display: block;
-  width: 100%;
-  padding: 10px 15px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  transition: 0.4s;
-}
+    & h2 {
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-form .form-inner .form-group input:focus {
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-}
+    & .form-group {
+      display: block;
+      width: 80%;
+      margin: 1rem auto;
 
-form .form-inner input[type='submit'] {
-  display: inline-block;
-  padding: 10px 15px;
-  border-radius: 8px;
-  background-image: linear-gradient(
-    to right,
-    #ffce00 50%,
-    #ffce00 50%,
-    #fe4880
-  );
-  background-position: 0%;
-  background-size: 200%;
-  transition: 0.4s;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-}
+      &--dates {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        margin: 3rem auto 1rem;
+      }
 
-form .form-inner input[type='submit']:hover {
-  background-position: 100% 0%;
-}
+      &:focus-within label {
+        color: $main-color;
+      }
 
-form .button {
-  margin: 5px;
-  font-size: 0.9rem;
-  font-weight: 700;
+      & select {
+        display: block;
+        width: 100%;
+        font-size: 1rem;
+        border-radius: 3px;
+      }
+
+      & label {
+        display: block;
+        color: $white;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        transition: 0.4s;
+      }
+
+      & input {
+        font-weight: 400;
+        display: block;
+        width: 100%;
+        padding: 10px 15px;
+        background-color: #f8f8f8;
+        border-radius: 3px;
+        transition: 0.4s;
+        border-bottom: 3px solid transparent;
+
+        &:focus {
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+          border-bottom: 3px solid $main-color;
+        }
+      }
+    }
+  }
 }

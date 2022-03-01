@@ -62,7 +62,7 @@ const OrderForm = ({ user, order }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='order-form'>
       <div className='form-inner'>
         {error !== '' ? <div className='error'>{error}</div> : ''}
         <div className='form-group'>
@@ -116,7 +116,7 @@ const OrderForm = ({ user, order }) => {
 
         <div className='btncenter'>
           <OutlineButton type='submit' className='button'>
-            Edytuj
+            Zarezerwuj
           </OutlineButton>
         </div>
       </div>

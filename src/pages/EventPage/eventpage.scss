@@ -1,7 +1,7 @@
 @use '../../scss/' as *;
 
 .event__section {
-  margin: 9rem auto;
+  margin: 13rem auto 5rem;
   width: 90%;
   min-height: 61vh;
 }
@@ -35,6 +35,11 @@ h4 {
   cursor: pointer;
 }
 
+.seat:hover {
+  color: $main-color;
+  transition: 0.3s all;
+}
+
 .seat__unavailable {
   color: red;
   font-weight: 700;
@@ -58,6 +63,12 @@ h4 {
 .event__seats {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 17rem;
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .seat {
@@ -65,10 +76,16 @@ h4 {
   padding: 3px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  margin-right: 2px;
+  margin: 2px 4px;
+  width: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba($black, 0.15);
 }
 
-.seat:nth-of-type(2) {
+.seat:nth-of-type(2),
+.seat:nth-of-type(8),
+.seat:nth-of-type(14),
+.seat:nth-of-type(20) {
   margin-right: 2rem;
 }
 
@@ -79,6 +96,18 @@ h4 {
 .event__order--button {
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 0.9rem;
+  // cursor: not-allowed;
+}
+
+.error {
+  margin-top: 2rem;
+  font-family: inherit;
+  font-size: 2rem;
+  color: $main-color;
+  font-weight: 700;
+  text-align: center;
+  transition: 0.4s all;
 }
