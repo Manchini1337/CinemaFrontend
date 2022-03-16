@@ -15,7 +15,7 @@ const HeroSlide = () => {
     api
       .get('/movies')
       .then((res) => {
-        setMovies(res.data.slice(0, 3));
+        setMovies(res.data.slice(0, 5));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -79,10 +79,10 @@ const HeroSlideItem = (props) => {
             <Button
               onClick={() => navigate('/movie/' + item.id, { state: item.id })}
             >
-              Watch now
+              Zobacz więcej
             </Button>
             <OutlineButton onClick={setModalActive}>
-              Watch trailer
+              Zobacz zwiastun
             </OutlineButton>
           </div>
         </div>

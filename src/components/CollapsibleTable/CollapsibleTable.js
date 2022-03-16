@@ -72,13 +72,13 @@ function Row({ row }) {
                   className='order__button'
                   onClick={() => acceptOrder(row.id)}
                 >
-                  Opłać zamówienie {row.id}
+                  Opłać zamówienie
                 </button>
                 <button
                   className='order__button'
                   onClick={() => cancelOrder(row.id)}
                 >
-                  Anuluj zamówienie {row.id}
+                  Anuluj zamówienie
                 </button>
               </div>
             </Box>

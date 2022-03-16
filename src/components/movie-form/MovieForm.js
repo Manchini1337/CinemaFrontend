@@ -106,7 +106,7 @@ const MovieForm = ({ addMovie, message, genres }) => {
         </div>
 
         <div className='form-group'>
-          <label htmlFor='background'>Tło:</label>
+          <label htmlFor='background'>Link do tła:</label>
           <input
             type='text'
             name='background'
